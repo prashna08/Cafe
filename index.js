@@ -59,12 +59,14 @@
 
   hamburger.addEventListener('click', () => {
     mobileMenu.classList.add('open');
+    hamburger.classList.add('open');
     document.body.style.overflow = 'hidden';
   });
 
   mobileClose.addEventListener('click', closeMobile);
 
   function closeMobile() {
+    hamburger.classList.remove('open');
     mobileMenu.classList.remove('open');
     document.body.style.overflow = '';
   }
