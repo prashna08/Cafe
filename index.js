@@ -77,6 +77,14 @@
 
   mobileClose.addEventListener('click', () => setMobileMenu(false));
 
+  // Close mobile menu when a link inside it is clicked
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => setMobileMenu(false));
+  });
+
+  // Keep backwards compatibility with inline onclick handlers
+  window.closeMobile = () => setMobileMenu(false);
+
   mobileMenu.addEventListener('click', (event) => {
     if (event.target === mobileMenu) setMobileMenu(false);
   });
