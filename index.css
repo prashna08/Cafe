@@ -267,7 +267,7 @@
       position: fixed;
       inset: 0;
       background: var(--espresso);
-      z-index: 1002;
+      z-index: 999;
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -1106,9 +1106,15 @@
 
     .location-grid {
       display: grid;
-      grid-template-columns: 1fr 1.4fr;
+      grid-template-columns: minmax(320px, 1fr) minmax(360px, 650px);
       gap: 4rem;
       align-items: start;
+    }
+
+    .location-grid > .reveal-right {
+      justify-self: center;
+      width: 100%;
+      max-width: 650px;
     }
 
     .location-info .section-title { margin-bottom: 1rem; }
