@@ -57,19 +57,35 @@
   const mobileMenu  = document.getElementById('mobileMenu');
   const mobileClose = document.getElementById('mobileClose');
 
-  hamburger.addEventListener('click', () => {
-    mobileMenu.classList.add('open');
-    hamburger.classList.add('open');
-    document.body.style.overflow = 'hidden';
+  function setMobileMenu(open) {
+    if (open) {
+      mobileMenu.classList.add('open');
+      hamburger.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+      mobileClose.focus();
+    } else {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      hamburger.focus();
+    }
+  }
+
+  hamburger.addEventListener('click', () => setMobileMenu(true));
+
+  mobileClose.addEventListener('click', () => setMobileMenu(false));
+
+  mobileMenu.addEventListener('click', (event) => {
+    if (event.target === mobileMenu) setMobileMenu(false);
   });
 
-  mobileClose.addEventListener('click', closeMobile);
-
-  function closeMobile() {
-    hamburger.classList.remove('open');
-    mobileMenu.classList.remove('open');
-    document.body.style.overflow = '';
-  }
+  window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && mobileMenu.classList.contains('open')) {
+      setMobileMenu(false);
+    }
+  });
 
   /* ============================================================
      SCROLL-TRIGGERED SECTION REVEALS

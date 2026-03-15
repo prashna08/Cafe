@@ -267,7 +267,7 @@
       position: fixed;
       inset: 0;
       background: var(--espresso);
-      z-index: 999;
+      z-index: 1002; /* above nav (1000) */
       flex-direction: column;
       align-items: center;
       justify-content: center;
